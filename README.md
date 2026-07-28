@@ -211,6 +211,8 @@ The following analytical tables were created in the Gold layer:
 Customer demographic information, location details, and additional business attributes are integrated into a single business entity.
 This provides a complete customer profile that can be reused across multiple reports.
 - gold.dim_product
+  <img width="1211" height="412" alt="image" src="https://github.com/user-attachments/assets/642864cd-dc1a-42cb-9ff0-8161847611cb" />
+
   The Product Dimension centralizes product information and enriches it with category details obtained from the ERP system.
 This enables business users to analyze sales by product category instead of relying only on product identifiers.
 ### Fact Table
