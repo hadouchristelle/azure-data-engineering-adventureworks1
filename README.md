@@ -158,7 +158,7 @@ Characteristics of the Bronze Layer
 - No filtering.
 - No aggregation.
 - No business transformation.
-# 7. Silver Layer
+# 6. Silver Layer
 
 ## Overview
 
@@ -182,6 +182,44 @@ The main transformations include:
 - Standardizing data formats.
 - Integrating related data from CRM and ERP systems.
 - Preparing datasets for dimensional modeling.
+- 
+# 7. Gold Layer
 
+## Overview
+The Gold layer represents the business-ready layer of the Medallion Architecture.
+At this stage, the cleaned and standardized datasets from the Silver layer are transformed into analytical models that support business reporting and decision-making.
+The Gold layer contains dimension tables and fact tables organized using a star schema, making the data easy to query and highly optimized for BI tools such as Power BI.
+## Business Requirement
+Business users are not interested in raw operational data.
+Instead, they need reliable datasets that answer business questions such as:
 
+- Who are our customers?
+- Which products generate the most revenue?
+- What are the monthly sales?
+- Which countries have the highest sales?
+To support these analyses, the data must be organized into dimensions and fact tables following a dimensional modeling approach.
+## Data Modeling
+The Gold layer follows a Star Schema design.
+This model separates descriptive business information into Dimension tables while transactional data is stored in Fact tables.
+This approach improves query performance and simplifies business reporting.
+## Project Implementation
+The following analytical tables were created in the Gold layer:
+### Dimension Tables
+- gold.dim_customer
+  <img width="1257" height="815" alt="image" src="https://github.com/user-attachments/assets/529fc573-6984-4d37-9106-7badf84aacd1" />
+  The Customer Dimension combines customer information collected from multiple source systems.
+Customer demographic information, location details, and additional business attributes are integrated into a single business entity.
+This provides a complete customer profile that can be reused across multiple reports.
+- gold.dim_product
+  The Product Dimension centralizes product information and enriches it with category details obtained from the ERP system.
+This enables business users to analyze sales by product category instead of relying only on product identifiers.
+### Fact Table
+- gold.fact_sales
+The Sales Fact table stores transactional sales data.
+Each record represents a business transaction and references the Customer and Product dimensions through surrogate keys.
+This structure allows Power BI to efficiently calculate KPIs such as:
 
+- Total Sales
+- Revenue by Product
+- Revenue by Customer
+- Monthly Sales Trends
