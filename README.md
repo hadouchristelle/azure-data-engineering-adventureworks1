@@ -158,5 +158,30 @@ Characteristics of the Bronze Layer
 - No filtering.
 - No aggregation.
 - No business transformation.
+# 7. Silver Layer
+
+## Overview
+
+The Silver layer is responsible for transforming the raw data stored in the Bronze layer into clean, consistent, and reliable datasets.
+
+At this stage, data quality rules are applied to remove inconsistencies, standardize formats, and integrate information from multiple source systems. The objective is to create trusted datasets that can be used for business modeling and analytics.
+
+Unlike the Bronze layer, which preserves the original data, the Silver layer focuses on improving data quality while maintaining data integrity.
+<img width="1312" height="695" alt="image" src="https://github.com/user-attachments/assets/2fa2cc14-0621-4312-92fe-1110abcd55f7" />
+
+## Data Transformation
+
+The Silver layer applies data quality and transformation rules to improve the usability of the raw datasets.
+
+The main transformations include:
+
+- Standardizing column names.
+- Converting data types.
+- Removing duplicate records.
+- Handling missing or invalid values.
+- Standardizing data formats.
+- Integrating related data from CRM and ERP systems.
+- Preparing datasets for dimensional modeling.
+
 
 
