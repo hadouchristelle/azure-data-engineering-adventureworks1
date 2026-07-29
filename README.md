@@ -206,15 +206,28 @@ This approach improves query performance and simplifies business reporting.
 The following analytical tables were created in the Gold layer:
 ### Dimension Tables
 - gold.dim_customer
-  <img width="1257" height="815" alt="image" src="https://github.com/user-attachments/assets/529fc573-6984-4d37-9106-7badf84aacd1" />
-  The Customer Dimension combines customer information collected from multiple source systems.
-Customer demographic information, location details, and additional business attributes are integrated into a single business entity.
-This provides a complete customer profile that can be reused across multiple reports.
-- gold.dim_product
-  <img width="1211" height="412" alt="image" src="https://github.com/user-attachments/assets/642864cd-dc1a-42cb-9ff0-8161847611cb" />
+The Customer Dimension provides a unified view of customers by combining information from multiple source systems.
+Customer data from the CRM system is enriched with personal details to create a complete customer profile.
+This dimension is used by business analysts to analyze sales by customer, location, and customer type.
+- Joined Customer and Person tables.
+- Selected relevant business attributes.
+- Created a complete customer profile.
+- Prepared the dataset for analytical reporting.
 
-  The Product Dimension centralizes product information and enriches it with category details obtained from the ERP system.
-This enables business users to analyze sales by product category instead of relying only on product identifiers.
+**Figure  – PySpark transformation used to build the Customer Dimension**
+  <img width="1257" height="815" alt="image" src="https://github.com/user-attachments/assets/529fc573-6984-4d37-9106-7badf84aacd1" />
+  
+- gold.dim_product
+  The Product Dimension centralizes product information and enriches it with category details.
+This allows business users to analyze sales by product, category, and subcategory instead of relying only on product identifiers
+- Joined Product and Product Category tables.
+- Selected business attributes.
+- Standardized product information.
+- Prepared the dataset for business analysis.
+
+**Figure – PySpark transformation used to build the Product Dimension**
+  <img width="1211" height="412" alt="image" src="https://github.com/user-attachments/assets/642864cd-dc1a-42cb-9ff0-8161847611cb" />
+ 
 ### Fact Table
 - gold.fact_sales
 The Sales Fact table stores transactional sales data.
@@ -225,3 +238,31 @@ This structure allows Power BI to efficiently calculate KPIs such as:
 - Revenue by Product
 - Revenue by Customer
 - Monthly Sales Trends
+  
+  # 8. Azure Synapse Analytics
+  <img width="1917" height="726" alt="image" src="https://github.com/user-attachments/assets/51db52d2-effd-4388-bfe4-734ede56b28e" />
+
+Azure Synapse Analytics provides the analytical layer between the Gold datasets and business intelligence tools.
+It enables business users and analysts to access curated data using standard SQL while improving query performance for reporting workloads.
+The business requires a centralized SQL interface where analysts can query trusted datasets without interacting directly with the engineering environ
+Azure Synapse provides this analytical layer by exposing curated Gold datasets for reporting and decision-making.
+## Benefits
+
+- Centralized SQL access
+- Optimized analytical queries
+- Easy integration with Power BI
+- Separation between data engineering and business analytics
+  # Power BI Dashboard
+
+The final stage of this project consists of building an interactive Power BI dashboard using the curated data stored in the Gold layer.
+
+The dashboard is connected to a Star Schema composed of one fact table and three dimension tables:
+
+Fact Table: gold_vw_fact_sales
+Dimension Tables:
+gold_vw_dim_customer
+gold_vw_dim_product
+gold_vw_dim_date
+<img width="1872" height="941" alt="image" src="https://github.com/user-attachments/assets/411472f1-ffaa-48a0-8cdc-d824f18e3180" />
+
+
